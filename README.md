@@ -20,6 +20,25 @@ Add the following lines just before the `return $app` statement in `bootstrap/ap
 ```
 $app->configureMonologUsing(function ($monolog) {
     $monolog->pushHandler(new VisualAppeal\DatabaseLogger\DatabaseHandler);
+    
+    // If you want to log to files too, e.g. the application has no database connections
+    // or the database is down.
+    $levels = [
+        'debug'     => Monolog\Logger::DEBUG,
+        'info'      => Monolog\Logger::INFO,
+        'notice'    => Monolog\Logger::NOTICE,
+        'warning'   => Monolog\Logger::WARNING,
+        'error'     => Monolog\Logger::ERROR,
+        'critical'  => Monolog\Logger::CRITICAL,
+        'alert'     => Monolog\Logger::ALERT,
+        'emergency' => Monolog\Logger::EMERGENCY,
+    ];
+
+    $monolog->pushHandler(new Monolog\Handler\RotatingFileHandler(
+        storage_path('/logs/laravel.log'),
+        7,
+        $levels[env('APP_LOG_LEVEL')]
+    ));
 });
 
 return $app;
