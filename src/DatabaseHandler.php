@@ -13,7 +13,7 @@ class DatabaseHandler extends AbstractProcessingHandler
      */
     protected function write(array $record)
     {
-        DB::table('log')->insert([
+        DB::table('logs')->insert([
             'message' => $record['message'],
             'context' => serialize($record['context']),
             'level' => $record['level'],
