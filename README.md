@@ -66,7 +66,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-version]: https://img.shields.io/packagist/v/VisualAppeal/DatabaseLogger.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/:vendor/:package_name
-[link-travis]: https://travis-ci.org/:vendor/:package_name
+[link-packagist]: https://packagist.org/packages/VisualAppeal/DatabaseLogger
+[link-travis]: https://travis-ci.org/VisualAppeal/DatabaseLogger
 [link-author]: https://github.com/visualappeal
 [link-contributors]: ../../contributors
