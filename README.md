@@ -10,7 +10,7 @@ Laravel package to log messages into the database instead of, or in addition to,
 Via Composer
 
 ``` bash
-$ composer require VisualAppeal/DatabaseLogger
+$ composer require visualappeal/databaselogger
 ```
 
 ## Usage
