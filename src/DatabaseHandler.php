@@ -13,9 +13,16 @@ class DatabaseHandler extends AbstractProcessingHandler
      */
     protected function write(array $record)
     {
+        try {
+            $context = serialize($record['context']);
+        } catch (\Exception $e) {
+            $context = serialize([]);
+            Log::error($e);
+        }
+
         DB::table('logs')->insert([
             'message' => $record['message'],
-            'context' => serialize($record['context']),
+            'context' => $context,
             'level' => $record['level'],
             'channel' => $record['channel'],
             'created_at' => $record['datetime'],
