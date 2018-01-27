@@ -17,16 +17,23 @@ class DatabaseHandler extends AbstractProcessingHandler
         if (is_object($record['context']) && ($record['context'] instanceof Closure)) {
             $context = 'Closure';
         } else {
-            $context = serialize($record['context']);
+            try {
+                $context = serialize($record['context']);
+            } catch (\Exception $e) {
+                $context = null;
+            }
         }
 
-        DB::table('logs')->insert([
-            'message' => $record['message'],
-            'context' => $context,
-            'level' => $record['level'],
-            'channel' => $record['channel'],
-            'created_at' => $record['datetime'],
-            'extra' => serialize($record['extra']),
-        ]);
+        try {
+            DB::table('logs')->insert([
+                'message' => $record['message'],
+                'context' => $context,
+                'level' => $record['level'],
+                'channel' => $record['channel'],
+                'created_at' => $record['datetime'],
+                'extra' => serialize($record['extra']),
+            ]);
+        } catch (\Exception $e) {
+        }
     }
 }
