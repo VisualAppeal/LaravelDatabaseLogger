@@ -14,11 +14,10 @@ class DatabaseHandler extends AbstractProcessingHandler
      */
     protected function write(array $record)
     {
-        try {
+        if (is_object($record['context']) && ($record['context'] instanceof Closure)) {
+            $context = 'Closure';
+        } else {
             $context = serialize($record['context']);
-        } catch (\Exception $e) {
-            $context = serialize([]);
-            Log::error($e);
         }
 
         DB::table('logs')->insert([
