@@ -1,9 +1,6 @@
 # Laravel DatabaseLogger
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
-
-Laravel package to log messages into the database instead of, or in addition to, a file.
+Laravel package to log messages into a database.
 
 ## Install
 
@@ -15,36 +12,21 @@ $ composer require visualappeal/databaselogger
 
 ## Usage
 
-Add the following lines just before the `return $app` statement in `bootstrap/app.php`:
+Add the following lines in your `config/logging.php`:
 
 ```
-$app->configureMonologUsing(function ($monolog) {
-    $monolog->pushHandler(new VisualAppeal\DatabaseLogger\DatabaseHandler);
-    
-    // If you want to log to files too, e.g. the application has no database connections
-    // or the database is down.
-    $levels = [
-        'debug'     => Monolog\Logger::DEBUG,
-        'info'      => Monolog\Logger::INFO,
-        'notice'    => Monolog\Logger::NOTICE,
-        'warning'   => Monolog\Logger::WARNING,
-        'error'     => Monolog\Logger::ERROR,
-        'critical'  => Monolog\Logger::CRITICAL,
-        'alert'     => Monolog\Logger::ALERT,
-        'emergency' => Monolog\Logger::EMERGENCY,
-    ];
-
-    $monolog->pushHandler(new Monolog\Handler\RotatingFileHandler(
-        storage_path('/logs/laravel.log'),
-        7,
-        $levels[env('APP_LOG_LEVEL')]
-    ));
-});
-
-return $app;
+'db' => [
+    'driver' => 'custom',
+    'via' => VisualAppeal\DatabaseLogger\DatabaseLogger::class,
+    'level' => env('LOG_LEVEL', 'debug'),
+],
 ```
 
 ## Change log
+
+### 1.2.0
+
+* New logging class compatible to Laravel 5.6
 
 ### 1.0.0
 

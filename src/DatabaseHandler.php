@@ -3,7 +3,6 @@
 namespace VisualAppeal\DatabaseLogger;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 use Monolog\Handler\AbstractProcessingHandler;
 
