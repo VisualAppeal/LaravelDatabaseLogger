@@ -19,6 +19,7 @@ class DatabaseLogger
         $handler = new DatabaseHandler($config['level'] ?? 'debug');
         $handler->setConnection($config['connection'] ?? 'mysql');
         $handler->setTable($config['table'] ?? 'logs');
+        $handler->setEncryption($config['encrypt'] ?? false);
 
         $logger->pushHandler($handler);
 

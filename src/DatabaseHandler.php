@@ -23,6 +23,13 @@ class DatabaseHandler extends AbstractProcessingHandler
     protected $table;
 
     /**
+     * Encrypt the context in database.
+     *
+     * @var boolean
+     */
+    protected $encryption;
+
+    /**
      * Set the database connection name.
      *
      * @param string $connection
@@ -43,6 +50,16 @@ class DatabaseHandler extends AbstractProcessingHandler
     }
 
     /**
+     * If the context should be encrypted for the database.
+     *
+     * @param bool $encryption
+     */
+    public function setEncryption(bool $encryption): void
+    {
+        $this->encryption = $encryption;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function write(array $record)
@@ -51,7 +68,11 @@ class DatabaseHandler extends AbstractProcessingHandler
             $context = 'Closure';
         } else {
             try {
-                $context = serialize($record['context']);
+                if ($this->encryption) {
+                    $context = encrypt($record['context']);
+                } else {
+                    $context = serialize($record['context']);
+                }
             } catch (\Exception $e) {
                 $context = null;
             }

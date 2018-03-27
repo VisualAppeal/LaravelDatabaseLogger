@@ -21,10 +21,15 @@ Add the following lines in your `config/logging.php`:
     'level' => env('LOG_LEVEL', 'debug'), // Optional
     'connection' => env('LOG_DATABASE', 'mysql'), // Optional
     'table' => env('LOG_TABLE', 'logs'), // Optional
+    'encrypt' => env('LOG_ENCRYPT', false), // Optional, Encrypt the context part of the log message before inserting it into the database
 ],
 ```
 
 ## Change log
+
+### 1.2.2
+
+* FEATURE: Added context encryption
 
 ### 1.2.1
 
