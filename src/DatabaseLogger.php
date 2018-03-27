@@ -15,7 +15,13 @@ class DatabaseLogger
     public function __invoke(array $config)
     {
         $logger = new Logger('laravel.database');
-        $logger->pushHandler(new DatabaseHandler($config['level'] ?? 'debug'));
+
+        $handler = new DatabaseHandler($config['level'] ?? 'debug');
+        $handler->setConnection($config['connection'] ?? 'mysql');
+        $handler->setTable($config['table'] ?? 'logs');
+
+        $logger->pushHandler($handler);
+
         return $logger;
     }
 }

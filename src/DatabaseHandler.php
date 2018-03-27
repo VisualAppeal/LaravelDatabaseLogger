@@ -9,6 +9,40 @@ use Monolog\Handler\AbstractProcessingHandler;
 class DatabaseHandler extends AbstractProcessingHandler
 {
     /**
+     * Name of the database connection.
+     *
+     * @var string
+     */
+    protected $connection;
+
+    /**
+     * connection table name.
+     *
+     * @var string
+     */
+    protected $table;
+
+    /**
+     * Set the database connection name.
+     *
+     * @param string $connection
+     */
+    public function setConnection(string $connection): void
+    {
+        $this->connection = $connection;
+    }
+
+    /**
+     * Set the database table name.
+     *
+     * @param string $table
+     */
+    public function setTable(string $table): void
+    {
+        $this->table = $table;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function write(array $record)
@@ -24,7 +58,7 @@ class DatabaseHandler extends AbstractProcessingHandler
         }
 
         try {
-            DB::table('logs')->insert([
+            DB::connection($this->connection)->table($this->table)->insert([
                 'message' => $record['message'],
                 'context' => $context,
                 'level' => $record['level'],

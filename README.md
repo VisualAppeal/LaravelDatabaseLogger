@@ -18,15 +18,21 @@ Add the following lines in your `config/logging.php`:
 'db' => [
     'driver' => 'custom',
     'via' => VisualAppeal\DatabaseLogger\DatabaseLogger::class,
-    'level' => env('LOG_LEVEL', 'debug'),
+    'level' => env('LOG_LEVEL', 'debug'), // Optional
+    'connection' => env('LOG_DATABASE', 'mysql'), // Optional
+    'table' => env('LOG_TABLE', 'logs'), // Optional
 ],
 ```
 
 ## Change log
 
+### 1.2.1
+
+* FEATURE: Usage of custom database connections or tables
+
 ### 1.2.0
 
-* New logging class compatible to Laravel 5.6
+* FEATURE: New logging class compatible to Laravel 5.6
 
 ### 1.0.0
 
