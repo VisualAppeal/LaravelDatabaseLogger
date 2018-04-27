@@ -27,6 +27,10 @@ Add the following lines in your `config/logging.php`:
 
 ## Change log
 
+### 1.3.0
+
+* CHANGE: Throw exception on insert error
+
 ### 1.2.2
 
 * FEATURE: Added context encryption
