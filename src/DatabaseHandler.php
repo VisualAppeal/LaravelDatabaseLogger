@@ -78,16 +78,13 @@ class DatabaseHandler extends AbstractProcessingHandler
             }
         }
 
-        try {
-            DB::connection($this->connection)->table($this->table)->insert([
-                'message' => $record['message'],
-                'context' => $context,
-                'level' => $record['level'],
-                'channel' => $record['channel'],
-                'created_at' => $record['datetime'],
-                'extra' => serialize($record['extra']),
-            ]);
-        } catch (\Exception $e) {
-        }
+        DB::connection($this->connection)->table($this->table)->insert([
+            'message' => $record['message'],
+            'context' => $context,
+            'level' => $record['level'],
+            'channel' => $record['channel'],
+            'created_at' => $record['datetime'],
+            'extra' => serialize($record['extra']),
+        ]);
     }
 }
