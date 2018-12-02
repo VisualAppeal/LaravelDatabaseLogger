@@ -15,7 +15,9 @@ class UpdateTextColumns extends Migration
     {
         Schema::table(env('LOG_TABLE', 'logs'), function (Blueprint $table) {
             $table->longText('message')->change();
-            $table->longText('context')->change();
+            $table->longText('context')
+                ->nullable()
+                ->change();
             $table->longText('extra')->change();
         });
     }
