@@ -1,29 +1,39 @@
 {
     "name": "visualappeal/databaselogger",
     "type": "library",
-    "description": "Laravel package to log messages into the database instead of a file.",
+    "description": "Laravel package to log messages into a database.",
     "keywords": [
-        "VisualAppeal",
+        "laravel",
         "database",
         "logger",
         "logging",
-        "laravel"
+        "monolog"
     ],
     "homepage": "https://github.com/VisualAppeal/DatabaseLogger",
     "license": "MIT",
     "authors": [
         {
-            "name": "VisualAppeal",
+            "name": "Tim Helfensdörfer",
             "email": "tim@visualappeal.de"
         }
     ],
     "require": {
-        "php" : ">=7.0",
-        "illuminate/support": "5.7.*"
+        "php": ">= 7.2",
+        "ext-sodium": "*",
+        "illuminate/database": ">= 5.7.*",
+        "illuminate/support": ">= 5.7.*",
+        "monolog/monolog": ">= 1.*"
     },
     "autoload": {
         "psr-4": {
             "VisualAppeal\\DatabaseLogger\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VisualAppeal\\DatabaseLogger\\ServiceProvider"
+            ]
         }
     },
     "config": {

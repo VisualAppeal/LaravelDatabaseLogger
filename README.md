@@ -21,11 +21,22 @@ Add the following lines in your `config/logging.php`:
     'level' => env('LOG_LEVEL', 'debug'), // Optional
     'connection' => env('LOG_DATABASE', 'mysql'), // Optional
     'table' => env('LOG_TABLE', 'logs'), // Optional
-    'encrypt' => env('LOG_ENCRYPT', false), // Optional, Encrypt the context part of the log message before inserting it into the database
+    
+    // Encryption requires sodium: https://secure.php.net/manual/en/book.sodium.php
+    'encrypt' => env('LOG_ENCRYPT', false), // Optional, encrypt the context part of the log message before inserting it into the database
+    'encrypt_key' => env('LOG_ENCRYPT_KEY', env('APP_KEY', '')), // Optional, only used if encrypt is true
 ],
 ```
 
+Database migrations are automatically registered, you only have to call `php artisan migrate` after installing the package.
+
 ## Change log
+
+### 2.0.0
+
+* CHANGE: Auto discover package
+* CHANGE: Changed name of the service provider
+* CHANGE: PHP >= 7.2 required
 
 ### 1.3.0
 

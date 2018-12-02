@@ -20,6 +20,7 @@ class DatabaseLogger
         $handler->setConnection($config['connection'] ?? 'mysql');
         $handler->setTable($config['table'] ?? 'logs');
         $handler->setEncryption($config['encrypt'] ?? false);
+        $handler->setEncryptionKey($config['encrypt_key'] ?? '');
 
         $logger->pushHandler($handler);
 

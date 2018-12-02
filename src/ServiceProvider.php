@@ -2,9 +2,9 @@
 
 namespace VisualAppeal\DatabaseLogger;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
-class DatabaseLoggerServiceProvider extends ServiceProvider
+class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Perform post-registration booting of services.
