@@ -13,7 +13,7 @@ class UpdateTextColumns extends Migration
      */
     public function up()
     {
-        Schema::table(env('LOG_TABLE', 'logs'), function (Blueprint $table) {
+        Schema::connection(env('LOG_DATABASE', config('database.default')))->table(env('LOG_TABLE', 'logs'), function (Blueprint $table) {
             $table->longText('message')->change();
             $table->longText('context')
                 ->nullable()
@@ -29,7 +29,7 @@ class UpdateTextColumns extends Migration
      */
     public function down()
     {
-        Schema::table(env('LOG_TABLE', 'logs'), function (Blueprint $table) {
+        Schema::connection(env('LOG_DATABASE', config('database.default')))->table(env('LOG_TABLE', 'logs'), function (Blueprint $table) {
             $table->text('message')->change();
             $table->text('context')->change();
             $table->text('extra')->change();

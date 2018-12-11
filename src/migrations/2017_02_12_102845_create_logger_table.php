@@ -13,7 +13,7 @@ class CreateLoggerTable extends Migration
      */
     public function up()
     {
-        Schema::create(env('LOG_TABLE', 'logs'), function (Blueprint $table) {
+        Schema::connection(env('LOG_DATABASE', config('database.default')))->create(env('LOG_TABLE', 'logs'), function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $table->text('message');
@@ -33,6 +33,6 @@ class CreateLoggerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(env('LOG_TABLE', 'logs'));
+        Schema::connection(env('LOG_DATABASE', config('database.default')))->dropIfExists(env('LOG_TABLE', 'logs'));
     }
 }
