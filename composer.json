@@ -21,6 +21,7 @@
         "php": ">= 7.2",
         "ext-sodium": "*",
         "illuminate/database": ">= 5.7",
+        "illuminate/encryption" : ">= 5.7",
         "illuminate/support": ">= 5.7",
         "monolog/monolog": ">= 1"
     },
