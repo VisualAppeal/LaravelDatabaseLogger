@@ -13,17 +13,19 @@ class CreateLoggerTable extends Migration
      */
     public function up()
     {
-        Schema::connection(env('LOG_DATABASE', config('database.default')))->create(env('LOG_TABLE', 'logs'), function (Blueprint $table) {
-            $table->bigIncrements('id');
+        if (env('LOG_DATABASE', false) !== false) {
+            Schema::connection(env('LOG_DATABASE', config('database.default')))->create(env('LOG_TABLE', 'logs'), function (Blueprint $table) {
+                $table->bigIncrements('id');
 
-            $table->text('message');
-            $table->text('context');
-            $table->smallInteger('level')
-                ->unsigned();
-            $table->string('channel');
-            $table->dateTime('created_at');
-            $table->text('extra');
-        });
+                $table->text('message');
+                $table->text('context');
+                $table->smallInteger('level')
+                    ->unsigned();
+                $table->string('channel');
+                $table->dateTime('created_at');
+                $table->text('extra');
+            });
+        }
     }
 
     /**
