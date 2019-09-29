@@ -92,7 +92,7 @@ class DatabaseHandler extends AbstractProcessingHandler
     /**
      * {@inheritdoc}
      */
-    protected function write(array $record)
+    protected function write(array $record): void
     {
         if (is_object($record['context']) && ($record['context'] instanceof \Closure)) {
             $context = 'Closure';
