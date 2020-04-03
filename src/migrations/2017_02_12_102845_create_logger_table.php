@@ -13,7 +13,7 @@ class CreateLoggerTable extends Migration
      */
     public function up()
     {
-        if (env('LOG_DATABASE', false) !== false) {
+        if (env('LOG_DATABASE', false) !== false && Schema::connection(env('LOG_DATABASE', config('database.default')))->hasTable(env('LOG_TABLE', 'logs')) === false) {
             Schema::connection(env('LOG_DATABASE', config('database.default')))->create(env('LOG_TABLE', 'logs'), function (Blueprint $table) {
                 $table->bigIncrements('id');
 
